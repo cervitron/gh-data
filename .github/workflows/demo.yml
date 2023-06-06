@@ -29,7 +29,7 @@ jobs:
         run: npm run build
       - name: publish artifact
         id:  setVersion
-        run:  find dist/assets/*.zip -type f -execdir echo '::set-output name=versionZip::{}' ';'
+        run:  find dist/assets/*.js -type f -execdir echo '::set-output name=versionZip::{}' ';'
       - name: upload
         uses: actions/upload-artifact@v3
         with: 
@@ -48,8 +48,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist-files
-          path: build_${{'needs.build.outputs.versionZip'}}         
+      
       - name: list
-        run: ls
+        run: echo ${{'needs.build.outputs.versionZip'}}         
       - name: Deploy
         run: echo "Deploying..."
