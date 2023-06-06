@@ -44,6 +44,7 @@ jobs:
         with:
           name: dist-files
           path: build_1.0.0         
-
+      - name: list
+        run: ls
       - name: Deploy
         run: echo "Deploying..."
