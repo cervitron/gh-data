@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: download artifact
-        uses: aochmann/actions-download-artifact@1.0.0
+        uses: actions/download-artifact@v3
         with:
           name: dist-files
           path: build_1.0.0         
