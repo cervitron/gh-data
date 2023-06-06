@@ -50,6 +50,6 @@ jobs:
           name: dist-files
       
       - name: list
-        run: echo ${{'needs.build.outputs.versionZip'}}         
+        run: echo "${{'needs.build.outputs.versionZip'}}"         
       - name: Deploy
         run: echo "Deploying..."
