@@ -25,7 +25,7 @@ jobs:
     needs: test
     runs-on: windows-latest
     outputs: 
-      versionZip: ${{steps.setVersion.outputs.versionZip}}
+      versionZip: ${{steps.setVersion.outputs.versionZipPrueba}}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -44,7 +44,7 @@ jobs:
         id:  setVersion
         run: |  
           $variable = "Hola desde PowerShell"    
-          echo "::set-output name=versionZip::$variable"
+          echo "::set-output name=versionZipPrueba::$variable"
         #(Get-ChildItem  *.json | Where {$_.Name -match 'package'} | Select-Object -First 1).name
       - name: upload
         uses: actions/upload-artifact@v3
