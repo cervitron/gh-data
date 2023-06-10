@@ -15,13 +15,25 @@ jobs:
       run: |
         $variable = "Hola desde PowerShell"
         Write-Host "La variable es $variable"
-        echo "::set-output name=mi_variable::$variable"
+        echo $variable > variable.txt
+
+    - name: Guardar variable como artefacto
+      uses: actions/upload-artifact@v2
+      with:
+        name: variables
+        path: variable.txt
 
   job2:
     needs: job1
     runs-on: ubuntu-latest
 
     steps:
-    - name: Imprimir variable en otro job
+    - name: Descargar artefactos
+      uses: actions/download-artifact@v2
+      with:
+        name: variables
+
+    - name: Leer variable desde archivo
       run: |
-        echo "La variable de salida es ${{ needs.job1.outputs.mi_variable }}"
+        $variable = Get-Content variable.txt
+        Write-Host "La variable de salida es $variable"
