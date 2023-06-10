@@ -24,8 +24,7 @@ jobs:
   build:
     needs: test
     runs-on: windows-latest
-    outputs: 
-      versionZip: ${{steps.setVersion.outputs.versionZipPrueba}}
+
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -44,7 +43,7 @@ jobs:
         id:  setVersion
         run: |  
           $variable = "Hola desde PowerShell"    
-          echo "versionZipPrueba=$variable" >> $GITHUB_OUTPUT
+          echo "versionZip=$variable" >> $GITHUB_OUTPUT
         # echo "::set-output name=versionZipPrueba::$variable"
         #(Get-ChildItem  *.json | Where {$_.Name -match 'package'} | Select-Object -First 1).name
       - name: upload
@@ -65,6 +64,7 @@ jobs:
       
       - name: filename
         run: |
-            echo "La variable de salida es ${{ env.versionZip }}"     
+          echo "versionZipPrueba=$variable" >> $GITHUB_OUTPUT
+            echo "La variable de salida es  ${{ needs.build.outputs.versionZip }}"     
       - name: Deploy
         run: echo "Deploying..."
