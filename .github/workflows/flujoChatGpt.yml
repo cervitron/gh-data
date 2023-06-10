@@ -1,4 +1,4 @@
-name: Flujo de trabajo
+name: Flujo de trabajo con fichero de texto
 
 on:
   push:

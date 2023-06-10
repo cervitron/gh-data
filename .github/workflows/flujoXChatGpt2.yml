@@ -1,0 +1,27 @@
+name: Flujo de trabajo con variable
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Establecer variable de salida en PowerShell
+      id: paso1
+      run: |
+        $variable = "Hola desde PowerShell"
+        Write-Host "La variable es $variable"
+        echo "mi_variable=$variable" >> $GITHUB_ENV
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Imprimir variable en otro job
+      run: |
+        echo "La variable de salida es ${{ env.mi_variable }}"
