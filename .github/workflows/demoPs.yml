@@ -25,7 +25,7 @@ jobs:
     needs: test
     runs-on: windows-latest
     outputs: 
-      versionZip: ${{steps.setVersion.outputs.versionZipPrueba}}
+      versionZip: ${{github}}
     steps:
       - name: Get code
         uses: actions/checkout@v3
