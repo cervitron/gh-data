@@ -25,7 +25,7 @@ jobs:
     needs: test
     runs-on: windows-latest
     outputs: 
-      versionZip: ${{github}}
+      versionZip: ${{steps.setVersion.outputs.versionZipPrueba}}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -64,6 +64,7 @@ jobs:
           name: dist-files
       
       - name: filename
-        run: echo "${{needs.build.outputs.versionZip}}"         
+        run: |
+            echo "La variable de salida es ${{ env.versionZip }}"     
       - name: Deploy
         run: echo "Deploying..."
