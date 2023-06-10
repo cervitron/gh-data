@@ -1,0 +1,27 @@
+name: Flujo de trabajo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Establecer variable de salida en PowerShell
+      id: paso1
+      run: |
+        $variable = "Hola desde PowerShell"
+        Write-Host "La variable es $variable"
+        echo "::set-output name=mi_variable::$variable"
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Imprimir variable en otro job
+      run: |
+        echo "La variable de salida es ${{ needs.job1.outputs.mi_variable }}"
