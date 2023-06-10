@@ -43,7 +43,8 @@ jobs:
       - name: publish artifact
         id:  setVersion
         run: |  
-          "funciona" echo '::set-output name=versionZip::{}'
+          $variable = "Hola desde PowerShell"    
+          echo "::set-output name=versionZip::$variable"
         #(Get-ChildItem  *.json | Where {$_.Name -match 'package'} | Select-Object -First 1).name
       - name: upload
         uses: actions/upload-artifact@v3
