@@ -44,7 +44,7 @@ jobs:
         id:  setVersion
         run: |  
           $variable = "Hola desde PowerShell"    
-          echo "versionZipPrueba=$variable" >> $GITHUB_OUTPUT
+          echo "{versionZipPrueba}={$variable"} >> $GITHUB_OUTPUT
         # echo "::set-output name=versionZipPrueba::$variable"
         #(Get-ChildItem  *.json | Where {$_.Name -match 'package'} | Select-Object -First 1).name
       - name: upload
