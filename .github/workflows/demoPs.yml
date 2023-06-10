@@ -23,7 +23,7 @@ jobs:
         run: npm run test
   build:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     outputs: 
       versionZip: ${{steps.setVersion.outputs.versionZip}}
     steps:
