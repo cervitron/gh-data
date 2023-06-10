@@ -1,4 +1,4 @@
-name: Deploy website
+name: Deploy website con PS
 on:
   push:
     branches:
@@ -42,7 +42,7 @@ jobs:
       
       - name: publish artifact
         id:  setVersion
-        run:  find *.json -type f -execdir echo '::set-output name=versionZip::{}' ';'
+        run:  (Get-ChildItem  *.json | Where {$_.Name -match 'package'} | Select-Object -First 1).name
       - name: upload
         uses: actions/upload-artifact@v3
         with: 
